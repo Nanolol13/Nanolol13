@@ -1,16 +1,45 @@
-## Hi there 👋
+repeat task.wait() until game:IsLoaded()
 
-<!--
-**Nanolol13/Nanolol13** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+-- Einstellungen
+local USE_KEY_SYSTEM = true -- << Auf false setzen, um das Keysystem zu deaktivieren
+local CORREKTER_KEY = "Nanolol13"
 
-Here are some ideas to get you started:
+-- Lade UI
+local Init = loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconLords/Scripts/main/Key"))()
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+-- Fenster
+local Window = Init:CreateWindow({
+    Title = "Loader",
+    SubTitle = "github.com/baconlords",
+    TabSize = 100,
+    LoadingTitle = "Loader",
+    LoadingSubtitle = "by github.com/baconlords",
+    ConfigurationSaving = {
+        Enabled = false
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "natives",
+        RememberJoins = false
+    },
+    KeySystem = USE_KEY_SYSTEM,
+    KeySettings = {
+        Title = "Key benötigt",
+        Subtitle = "Join Discord für Key",
+        Note = "discord.gg/natives",
+        FileName = "LoaderKey",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = {"Nanolol13"}
+    }
+})
+
+-- Haupt-Tab
+local MainTab = Window:CreateTab("Main", 123456)
+
+MainTab:CreateButton({
+    Name = "Script laden",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconLords/Scripts/main/test.lua"))()
+    end
+})
